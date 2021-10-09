@@ -1,15 +1,17 @@
 package edu.cybersoft.java14.congty.nhansu;
 
+import java.util.ArrayList;
+
 /**
- * class NhanVien 
+ * class TruongPhong 
  * @author Administrator
  *
  */
 
 public class TruongPhong extends NhanSu {
 	/*properties*/
-	protected String truongPhongQL;
-	protected Integer soNhanVienDuoiQuyen;
+	protected Integer soNVDuoiQuyen;
+	ArrayList<NhanVien> dSNVDuoiQuyen =new ArrayList<NhanVien>();
 	
 	
 	/*constructor*/
@@ -18,17 +20,30 @@ public class TruongPhong extends NhanSu {
 		this.hoTen = hoTen;
 		this.soDT = soDT;
 		this.soNgayLamViec = soNgay;
-		luongNgay = 200f;
+		luongNgay = 200;
 	}
 	
 	/*setter/getter*/
-	
+	public String getHoTen() {
+		return hoTen;
+	}
+	public void setNhanVien(NhanVien nv) {
+		this.dSNVDuoiQuyen.add(nv);
+	}
+	public void getDanhSach() {
+		System.out.println(dSNVDuoiQuyen);
+	}
 	/*methods*/
 	@Override
-	public void tinhLuong() {
-		this.luongThang = luongNgay*soNgayLamViec+100*soNhanVienDuoiQuyen;
-		System.out.println(this.luongThang);
+	public Integer tinhLuong() {
+		if(dSNVDuoiQuyen == null) {
+			soNVDuoiQuyen = 0;
+		} else {
+			soNVDuoiQuyen = dSNVDuoiQuyen.size();
+		}
+		
+		Integer luongThang = luongNgay*soNgayLamViec+100*soNVDuoiQuyen;
+		return luongThang;
 	}
-
 	
 }

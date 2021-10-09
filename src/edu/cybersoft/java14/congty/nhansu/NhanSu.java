@@ -11,8 +11,7 @@ public class NhanSu {
 	protected String hoTen;
 	protected String soDT;
 	protected Integer soNgayLamViec;
-	protected Float luongNgay;
-	protected Float luongThang;
+	protected Integer luongNgay;
 	
 	/* constructor */
 	
@@ -28,7 +27,12 @@ public class NhanSu {
 	}
 	
 	/* methods */
-	public void tinhLuong() {
-		this.luongThang = luongNgay*soNgayLamViec;
+	public Integer tinhLuong() {
+		Integer luongThang = (luongNgay*soNgayLamViec);
+		return luongThang;
 	}
+	@Override
+    public String toString() {
+        return " [ " + maSo + ", " + hoTen + ", " + soDT + ", " + soNgayLamViec + "]";
+    }
 }
