@@ -36,7 +36,7 @@ public class QuanLyNhanSuConsole {
 		System.out.println("1. Nhập thông tin công ty");
 		System.out.println("2. Xuất thông tin công ty");
 		System.out.println("3. Thêm nhân sự");
-		System.out.println("4. ");
+		System.out.println("4. Xoá nhân sự");
 		System.out.println("5. In danh sách nhân sự");
 		System.out.println("6. ");
 		System.out.println("7. ");
