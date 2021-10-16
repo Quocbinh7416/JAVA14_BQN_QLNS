@@ -54,18 +54,23 @@ public class QuanLyNhanSuConsole {
 			break;
 		case 1: // nhập thông tin công ty
 			quanLyNhanSuCore.nhapThongTinCongTy(scanner);
+			keepGoing();
 			break;
 		case 2: // xuất thông tin công ty
 			quanLyNhanSuCore.xuatThongTinCongTy();
+			keepGoing();
 			break;
 		case 3: // thêm nhân sự
 			themNhanSu();
+			keepGoing();
 			break;
 		case 4: // xóa nhân sự
-			
+			xoaNhanSu();
+			keepGoing();
 			break;
 		case 5: // in danh sách nhân sự
 			quanLyNhanSuCore.inDanhSachNhanSu();
+			keepGoing();
 			break;
 		case 6:
 			
@@ -82,6 +87,35 @@ public class QuanLyNhanSuConsole {
 		case 10:
 			
 			break;
+		default:
+			System.out.println("Lựa chọn không hợp lệ.");
+			break;
+		}
+	}
+	private static void xoaNhanSu() {
+		int loaiNhanSu = 0;
+		boolean isSuccess = false;
+		System.out.println("Loại nhân sự cần xoá:");
+		System.out.println("1. Nhân viên");
+		System.out.println("2. Trưởng phòng");
+		System.out.println("3. Giám đốc");
+		System.out.print("Lựa chọn: ");
+		loaiNhanSu = Integer.parseInt(scanner.nextLine());
+		
+	}
+
+	private static void keepGoing() {
+		System.out.println("Tiếp tục hay không?");
+		System.out.println("1. Tiếp tục");
+		System.out.println("2. Không");
+		int selectNumber= Integer.parseInt(scanner.nextLine());
+		switch (selectNumber) {
+		case 1:
+			MyUtils.drawLine(50);
+			start();
+			break;
+		case 2:
+			System.out.println("Chương trình đã kết thúc.\nHẹn gặp lại lần sau!");
 		default:
 			System.out.println("Lựa chọn không hợp lệ.");
 			break;
