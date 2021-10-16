@@ -3,6 +3,7 @@ package edu.cybersoft.java14.QLNS.view;
 import java.util.Scanner;
 
 import edu.cybersoft.java14.QLNS.controller.QuanLyNhanSu;
+import edu.cybersoft.java14.QLNS.model.CongTy;
 import edu.cybersoft.java14.QLNS.model.GiamDoc;
 import edu.cybersoft.java14.QLNS.model.NhanVien;
 import edu.cybersoft.java14.QLNS.model.TruongPhong;
@@ -20,21 +21,23 @@ public class QuanLyNhanSuConsole {
 	public static void test() {
 		GiamDoc gd1 = new GiamDoc();
 		gd1.nhapThongTinTest("GiamDoc1", "1234", 23);
+		gd1.setCoPhanTest(50f);
 		GiamDoc gd2 = new GiamDoc();
 		gd2.nhapThongTinTest("GiamDoc2", "4444", 21);
+		gd2.setCoPhanTest(3.5f);
 		TruongPhong tp1 = new TruongPhong();
 		tp1.nhapThongTinTest("TruongPhong B", "4321", 25);
 		TruongPhong tp2 = new TruongPhong();
 		tp2.nhapThongTinTest("TruongPhong A", "1234", 24);
 		NhanVien nv1 = new NhanVien();
-		nv1.nhapThongTinTest("NhanVien Z", "111", 27);
+		nv1.nhapThongTinTest("Nguyen Van Z", "111", 27);
 		nv1.setTruongPhong(tp1.getHoTen());
 		tp1.setSoNhanVien(1);
 		
 		NhanVien nv2 = new NhanVien();
-		nv2.nhapThongTinTest("NhanVien B", "222", 26);
+		nv2.nhapThongTinTest("Ly Thi B", "222", 26);
 		NhanVien nv3 = new NhanVien();
-		nv3.nhapThongTinTest("NhanVien X", "333", 25);
+		nv3.nhapThongTinTest("Phan Van X", "333", 25);
 		quanLyNhanSuCore.themGiamDoc(gd1);
 		quanLyNhanSuCore.themGiamDoc(gd2);
 		quanLyNhanSuCore.themTruongPhong(tp1);
@@ -74,9 +77,9 @@ public class QuanLyNhanSuConsole {
 		System.out.println("8. Nhân viên thường lương cao nhất");
 		System.out.println("9. Trưởng phòng có nhiều nhân viên dưới quyền nhất");
 		System.out.println("10. Sắp xếp nhân viên theo thứ tự ABC");
-		System.out.println("11. ");
-		System.out.println("12. ");
-		System.out.println("13. ");
+		System.out.println("11. Sắp xếp nhân viên theo thứ tự lương giảm dần");
+		System.out.println("12. Giám đốc có số cổ phần nhiều nhất");
+		System.out.println("13. Thu nhập của giám đốc");
 		System.out.println("0. Thoát");
 		System.out.print("Lựa chọn: ");
 	}
@@ -116,6 +119,15 @@ public class QuanLyNhanSuConsole {
 			break;
 		case 10: // sx nhan vien theo ABC
 			quanLyNhanSuCore.sortNhanVienabc();
+			break;
+		case 11: // sx nhan vien theo luong giam dan
+			quanLyNhanSuCore.sortNhanVienLuong();
+			break;
+		case 12: // gd có số cp nhiều nhất
+			quanLyNhanSuCore.findMaxGD();
+			break;
+		case 13: // thu nhập của giám đốc
+			quanLyNhanSuCore.tinhThuThapGiamDoc();
 			break;
 		default:
 			System.out.println("Lựa chọn không hợp lệ.");

@@ -1,7 +1,5 @@
 package edu.cybersoft.java14.QLNS.model;
 
-import edu.cybersoft.java14.QLNS.utils.MyUtils;
-
 public class NhanVien extends NhanSu {
 	/* properties */
 	private String truongPhong;

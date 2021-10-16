@@ -1,12 +1,11 @@
 package edu.cybersoft.java14.QLNS.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 import edu.cybersoft.java14.QLNS.model.CongTy;
-import edu.cybersoft.java14.QLNS.model.NhanSu;
 import edu.cybersoft.java14.QLNS.model.NhanVien;
 import edu.cybersoft.java14.QLNS.model.TruongPhong;
 import edu.cybersoft.java14.QLNS.utils.MyUtils;
@@ -233,8 +232,83 @@ public class QuanLyNhanSu {
 	
 
 	public void sortNhanVienabc() {
-		// TODO Auto-generated method stub
+		List<String> dayHoTen = new ArrayList<String>();
+		List<NhanVien> newDsNhanVien = new ArrayList<NhanVien>();
 		
+		for (int i = 0; i < dsNhanVien.size(); i++) {
+			String name = dsNhanVien.get(i).getHoTen();
+			dayHoTen.add(name);
+		}
+		dayHoTen.sort(null);
+		for (int i = 0; i < dayHoTen.size(); i++) {
+			for(int j = 0; j < dsNhanVien.size(); j++) {
+				if(dayHoTen.get(i).equals(dsNhanVien.get(j).getHoTen())) {
+					NhanVien nv = dsNhanVien.get(j);				
+					newDsNhanVien.add(nv);
+					dsNhanVien.remove(j);
+				}
+			}
+		}
+		for (int i = 0; i < newDsNhanVien.size(); i++) {
+			NhanVien nv = newDsNhanVien.get(i);
+			dsNhanVien.add(nv);
+		}
+	}
+	
+
+	public void sortNhanVienLuong() {
+		List<Float> dayLuong = new ArrayList<Float>();
+		List<NhanVien> newDsNhanVien = new ArrayList<NhanVien>();
+		
+		for (int i = 0; i < dsNhanVien.size(); i++) {
+			Float luong = dsNhanVien.get(i).tinhLuong();
+			dayLuong.add(luong);
+		}
+		dayLuong.sort(Collections.reverseOrder());
+		for (int i = 0; i < dayLuong.size(); i++) {
+			for(int j = 0; j < dsNhanVien.size(); j++) {
+				if(dayLuong.get(i) == dsNhanVien.get(j).tinhLuong()) {
+					NhanVien nv = dsNhanVien.get(j);				
+					newDsNhanVien.add(nv);
+					dsNhanVien.remove(j);
+				}
+			}
+		}
+		for (int i = 0; i < newDsNhanVien.size(); i++) {
+			NhanVien nv = newDsNhanVien.get(i);
+			dsNhanVien.add(nv);
+		}
+		
+	}
+	
+
+	public void findMaxGD() {
+		String name = dsGiamDoc.get(0).getName();
+		Float maxCp = dsGiamDoc.get(0).getSoCP();
+		for (int i = 0 ; i < dsGiamDoc.size(); i++) {
+			if (maxCp < dsGiamDoc.get(i).getSoCP()) {
+				maxCp = dsGiamDoc.get(i).getSoCP();
+				name = dsGiamDoc.get(i).getName();
+			}
+		}
+		System.out.println("Giám đốc có số cổ phần nhiều nhất là: " + name);
+		System.out.println("Với số CP là: " + maxCp);
+	}
+
+	public void tinhThuThapGiamDoc() {
+		// lợi nhuận công ty
+		double doanhThu = congTy.getDoanhThu();
+		double tongLuong = this.tinhTongLuong();
+		double loiNhuan = doanhThu - tongLuong;
+		System.out.println(loiNhuan);
+		float luongThang;
+		for (int i = 0 ; i < dsGiamDoc.size(); i++) {
+			GiamDoc gd = dsGiamDoc.get(i);
+			System.out.println("Giám đốc: " + gd.getName());
+			luongThang = (float) (gd.tinhLuong() + loiNhuan * gd.getSoCP() / 100f);
+			System.out.println("Thu nhập là: " + luongThang);
+			MyUtils.drawLine(20);
+		}
 	}
 	
 }
