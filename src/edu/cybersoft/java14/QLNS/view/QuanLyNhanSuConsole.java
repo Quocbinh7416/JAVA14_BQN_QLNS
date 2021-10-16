@@ -23,18 +23,18 @@ public class QuanLyNhanSuConsole {
 		GiamDoc gd2 = new GiamDoc();
 		gd2.nhapThongTinTest("GiamDoc2", "4444", 21);
 		TruongPhong tp1 = new TruongPhong();
-		tp1.nhapThongTinTest("TruongPhong1", "4321", 25);
+		tp1.nhapThongTinTest("TruongPhong B", "4321", 25);
 		TruongPhong tp2 = new TruongPhong();
-		tp2.nhapThongTinTest("TruongPhong2", "1234", 24);
+		tp2.nhapThongTinTest("TruongPhong A", "1234", 24);
 		NhanVien nv1 = new NhanVien();
-		nv1.nhapThongTinTest("NhanVien1", "111", 27);
+		nv1.nhapThongTinTest("NhanVien Z", "111", 27);
 		nv1.setTruongPhong(tp1.getHoTen());
 		tp1.setSoNhanVien(1);
 		
 		NhanVien nv2 = new NhanVien();
-		nv2.nhapThongTinTest("NhanVien2", "222", 26);
+		nv2.nhapThongTinTest("NhanVien B", "222", 26);
 		NhanVien nv3 = new NhanVien();
-		nv3.nhapThongTinTest("NhanVien3", "333", 25);
+		nv3.nhapThongTinTest("NhanVien X", "333", 25);
 		quanLyNhanSuCore.themGiamDoc(gd1);
 		quanLyNhanSuCore.themGiamDoc(gd2);
 		quanLyNhanSuCore.themTruongPhong(tp1);
@@ -70,10 +70,13 @@ public class QuanLyNhanSuConsole {
 		System.out.println("4. Xoá nhân sự");
 		System.out.println("5. In danh sách nhân sự");
 		System.out.println("6. Phân bổ nhân viên vào trưởng phòng");
-		System.out.println("7. ");
-		System.out.println("8. ");
-		System.out.println("9. ");
-		System.out.println("10. ");
+		System.out.println("7. Tính tổng lương");
+		System.out.println("8. Nhân viên thường lương cao nhất");
+		System.out.println("9. Trưởng phòng có nhiều nhân viên dưới quyền nhất");
+		System.out.println("10. Sắp xếp nhân viên theo thứ tự ABC");
+		System.out.println("11. ");
+		System.out.println("12. ");
+		System.out.println("13. ");
 		System.out.println("0. Thoát");
 		System.out.print("Lựa chọn: ");
 	}
@@ -85,46 +88,42 @@ public class QuanLyNhanSuConsole {
 			break;
 		case 1: // nhập thông tin công ty
 			quanLyNhanSuCore.nhapThongTinCongTy(scanner);
-			keepGoing();
 			break;
 		case 2: // xuất thông tin công ty
 			quanLyNhanSuCore.xuatThongTinCongTy();
-			keepGoing();
 			break;
 		case 3: // thêm nhân sự
 			themNhanSu();
-			keepGoing();
 			break;
 		case 4: // xóa nhân sự
 			xoaNhanSu();
-			keepGoing();
 			break;
 		case 5: // in danh sách nhân sự
 			quanLyNhanSuCore.inDanhSachNhanSu();
-			keepGoing();
 			break;
 		case 6: // Phân bổ nhân viên vào trưởng phòng
 			phanBoNhanVien();
-			keepGoing();
 			break;
-		case 7:
-			
+		case 7: // tinh tong luong
+			double tongLuong = quanLyNhanSuCore.tinhTongLuong();
+			System.out.println("Tổng lương là: " + tongLuong);
 			break;
-		case 8:
-			
+		case 8: // nhan vien luong cao nhat
+			quanLyNhanSuCore.nvLuongCaoNhat();
 			break;
-		case 9:
-			
+		case 9: // truong phong co nhieu nv nhat
+			quanLyNhanSuCore.tpNhieuNhanVienNhat();
 			break;
-		case 10:
-			
+		case 10: // sx nhan vien theo ABC
+			quanLyNhanSuCore.sortNhanVienabc();
 			break;
 		default:
 			System.out.println("Lựa chọn không hợp lệ.");
 			break;
 		}
+		keepGoing();
 	}
-	
+
 	private static void phanBoNhanVien() {
 		// lua chon nhan vien
 		System.out.println("Nhập mã nhân viên cần phân bổ:");
@@ -194,6 +193,7 @@ public class QuanLyNhanSuConsole {
 	}
 
 	private static void keepGoing() {
+		MyUtils.drawLine(30);
 		System.out.println("Tiếp tục hay không?");
 		System.out.println("1. Tiếp tục");
 		System.out.println("2. Không");

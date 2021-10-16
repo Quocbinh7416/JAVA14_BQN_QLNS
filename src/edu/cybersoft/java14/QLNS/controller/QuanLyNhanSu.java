@@ -92,10 +92,14 @@ public class QuanLyNhanSu {
 	}
 	
 	public double tinhTongLuong() {
-		/*
-		 * TODO: tinh tong luong cho toan bo nhan su
-		 */
-		return 0;
+		double tongLuong = 0;
+		for(int i = 0 ; i < dsNhanVien.size(); i++) {
+			tongLuong += dsNhanVien.get(i).tinhLuong();
+		}
+		for(int i = 0 ; i < dsTruongPhong.size(); i++) {
+			tongLuong += dsTruongPhong.get(i).tinhLuong();
+		}
+		return tongLuong;
 	}
 
 	public void nhapThongTinCongTy(Scanner scanner) {
@@ -115,7 +119,6 @@ public class QuanLyNhanSu {
 		return null;
 	}
 
-
 	public TruongPhong timTruongPhong(String maTP) {
 		for (TruongPhong tp : dsTruongPhong) {
 			if(tp.getMaSo().equals(maTP)) {
@@ -125,7 +128,6 @@ public class QuanLyNhanSu {
 		return null;
 	}
 	
-
 	public void xoaGiamDoc(String maGD) {
 		// 1 check list
 		boolean isExist = false;
@@ -197,4 +199,42 @@ public class QuanLyNhanSu {
 		}
 		
 	}
+	
+
+	public void nvLuongCaoNhat() {
+		float max = dsNhanVien.get(0).tinhLuong();
+		String tenNV = dsNhanVien.get(0).getHoTen() ;
+		for (int i =0 ; i < dsNhanVien.size(); i++) {
+			if (max < dsNhanVien.get(i).tinhLuong()) {
+				max = dsNhanVien.get(i).tinhLuong();
+				tenNV = dsNhanVien.get(i).getHoTen();
+			}
+		}
+		System.out.println("Nhân viên lương cao nhất là: " + tenNV);
+		System.out.println("Với mức lương là :" + max);
+		MyUtils.drawLine(20);
+	}
+	
+
+	public void tpNhieuNhanVienNhat() {
+		int max = dsTruongPhong.get(0).getSoNhanVien();
+		String tenTP = dsTruongPhong.get(0).getHoTen() ;
+		for (int i =0 ; i < dsTruongPhong.size(); i++) {
+			if (max < dsTruongPhong.get(i).getSoNhanVien()) {
+				max = dsTruongPhong.get(i).getSoNhanVien();
+				tenTP = dsTruongPhong.get(i).getHoTen();
+			}
+		}
+		System.out.println("Trưởng phòng có nhiều nhân viên nhất: " + tenTP);
+		System.out.println("Với số nhân viên là :" + max);
+		MyUtils.drawLine(20);
+		
+	}
+	
+
+	public void sortNhanVienabc() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

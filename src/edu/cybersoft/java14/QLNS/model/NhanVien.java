@@ -14,6 +14,10 @@ public class NhanVien extends NhanSu {
 		this.luongMotNgay=100f;
 	}
 	/* getters/setters */
+	public String getHoTen() {
+		return this.hoTen;
+	}
+	
 	public String getTruongPhong () {
 		return this.truongPhong;
 	}
