@@ -17,6 +17,12 @@ public class QuanLyNhanSuConsole {
 	/* getters/setters */
 	
 	/* methods */
+	public static void test() {
+		themNhanSu();
+		quanLyNhanSuCore.inDanhSachNhanSu();
+		
+	}
+	
 	public static void start() {
 		
 		int luaChon = 0;
@@ -92,6 +98,7 @@ public class QuanLyNhanSuConsole {
 			break;
 		}
 	}
+	
 	private static void xoaNhanSu() {
 		int loaiNhanSu = 0;
 		boolean isSuccess = false;
@@ -135,17 +142,17 @@ public class QuanLyNhanSuConsole {
 		case 1:
 			NhanVien nv = new NhanVien();
 			nv.nhapThongTin(scanner);
-			isSuccess = quanLyNhanSuCore.themNhanSu(nv);
+			isSuccess = quanLyNhanSuCore.themNhanVien(nv);
 			break;
 		case 2:
 			TruongPhong tp = new TruongPhong();
 			tp.nhapThongTin(scanner);
-			isSuccess = quanLyNhanSuCore.themNhanSu(tp);
+			isSuccess = quanLyNhanSuCore.themTruongPhong(tp);
 			break;
 		case 3:
 			GiamDoc gd = new GiamDoc();
 			gd.nhapThongTin(scanner);
-			isSuccess = quanLyNhanSuCore.themNhanSu(gd);
+			isSuccess = quanLyNhanSuCore.themGiamDoc(gd);
 			break;
 
 		default:

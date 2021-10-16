@@ -40,7 +40,7 @@ public abstract class NhanSu {
 	abstract protected String getChucVu();
 
 	public void xuatThongTin() {
-		MyUtils.drawLine(20);
+		MyUtils.drawLine(10);
 		System.out.printf("%s %s:\n","Thông tin", getChucVu());
 		System.out.printf("%-16s: %s\n","Mã số", this.maSo);
 		System.out.printf("%-16s: %s\n", "Họ tên", this.hoTen);

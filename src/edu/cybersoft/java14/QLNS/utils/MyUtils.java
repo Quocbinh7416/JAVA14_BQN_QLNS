@@ -7,3 +7,4 @@ public interface MyUtils {
 		System.out.println();
 	}
 }
+
