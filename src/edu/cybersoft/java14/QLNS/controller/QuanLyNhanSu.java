@@ -72,13 +72,6 @@ public class QuanLyNhanSu {
 		return dsGiamDoc.add(gd);
 	}
 	
-	public boolean xoaNhanSu(String maSo) {
-		/*
-		 * TODO: xoa nhan su
-		 */
-		return false;
-	}
-	
 	public void inDanhSachNhanSu() {
 		System.out.println("Danh sách nhân sự:");
 		MyUtils.drawLine(20);
@@ -92,7 +85,7 @@ public class QuanLyNhanSu {
 			tp.xuatThongTin();
 		}
 		MyUtils.drawLine(20);
-		System.out.println("Danh sách nhân sự:");
+		System.out.println("Nhân viên:");
 		for(NhanVien nv : dsNhanVien) {			
 			nv.xuatThongTin();
 		}
@@ -122,6 +115,7 @@ public class QuanLyNhanSu {
 		return null;
 	}
 
+
 	public TruongPhong timTruongPhong(String maTP) {
 		for (TruongPhong tp : dsTruongPhong) {
 			if(tp.getMaSo().equals(maTP)) {
@@ -129,5 +123,78 @@ public class QuanLyNhanSu {
 			}
 		}
 		return null;
+	}
+	
+
+	public void xoaGiamDoc(String maGD) {
+		// 1 check list
+		boolean isExist = false;
+		for (int i =dsGiamDoc.size() - 1; i >=0 ; i--) {
+			if(dsGiamDoc.get(i).getMaSo().equals(maGD)) {
+				dsGiamDoc.remove(i);
+				isExist =true;
+			}
+		}
+		// 2 thông báo kết quả
+		if (isExist == true) {
+			System.out.println("Xoá thành công !!!");
+		} else {
+			System.out.println("Không tìm thấy mã giám đốc");
+		}
+	}
+
+	public void xoaTruongPhong(String maTP) {
+		// 1 check list
+		boolean isExist = false;
+		String tenTPXoa = "";
+		for (int i = dsTruongPhong.size() - 1; i >=0 ; i--) {
+			if(dsTruongPhong.get(i).getMaSo().equals(maTP)) {
+				tenTPXoa = dsTruongPhong.get(i).getHoTen();
+				dsTruongPhong.remove(i);
+				isExist =true;
+			}
+		}
+		// 2 thông báo kết quả
+		if (isExist == true) {
+			// xoá danh sách nhân viên dưới quyền
+			for (int i = dsNhanVien.size() - 1 ; i >=0 ; i--) {
+				if(dsNhanVien.get(i).getTruongPhong().equals(tenTPXoa)) {
+					
+					dsNhanVien.get(i).setTruongPhong("-");
+				}
+			}
+			System.out.println("Xoá thành công !!!");
+		} else {
+			System.out.println("Không tìm thấy mã trưởng phòng");
+		}
+		
+	}
+	
+
+	public void xoaNhanVien(String maNV) {
+		// 1 check list
+		boolean isExist = false;
+		String truongPhongQuanLy = "";
+		for (int i = dsNhanVien.size() - 1; i >=0 ; i--) {
+			if(dsNhanVien.get(i).getMaSo().equals(maNV)) {
+				truongPhongQuanLy=dsNhanVien.get(i).getTruongPhong();
+				dsNhanVien.remove(i);
+				isExist =true;
+			}
+		}
+		// 2 thông báo kết quả
+		if (isExist == true) {
+			// giảm SVN dưới quyền của QL
+			for (int i = dsTruongPhong.size() - 1 ; i >=0 ; i--) {
+				if(dsTruongPhong.get(i).getHoTen().equals(truongPhongQuanLy)) {
+					int SVN = dsTruongPhong.get(i).getSoNhanVien() - 1;
+					dsTruongPhong.get(i).setSoNhanVien(SVN);
+				}
+			}
+			System.out.println("Xoá thành công !!!");
+		} else {
+			System.out.println("Không tìm thấy mã nhân viên");
+		}
+		
 	}
 }

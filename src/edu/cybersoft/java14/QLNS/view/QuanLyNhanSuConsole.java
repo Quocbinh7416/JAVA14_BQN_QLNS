@@ -20,6 +20,8 @@ public class QuanLyNhanSuConsole {
 	public static void test() {
 		GiamDoc gd1 = new GiamDoc();
 		gd1.nhapThongTinTest("GiamDoc1", "1234", 23);
+		GiamDoc gd2 = new GiamDoc();
+		gd2.nhapThongTinTest("GiamDoc2", "4444", 21);
 		TruongPhong tp1 = new TruongPhong();
 		tp1.nhapThongTinTest("TruongPhong1", "4321", 25);
 		TruongPhong tp2 = new TruongPhong();
@@ -27,11 +29,14 @@ public class QuanLyNhanSuConsole {
 		NhanVien nv1 = new NhanVien();
 		nv1.nhapThongTinTest("NhanVien1", "111", 27);
 		nv1.setTruongPhong(tp1.getHoTen());
+		tp1.setSoNhanVien(1);
+		
 		NhanVien nv2 = new NhanVien();
 		nv2.nhapThongTinTest("NhanVien2", "222", 26);
 		NhanVien nv3 = new NhanVien();
 		nv3.nhapThongTinTest("NhanVien3", "333", 25);
 		quanLyNhanSuCore.themGiamDoc(gd1);
+		quanLyNhanSuCore.themGiamDoc(gd2);
 		quanLyNhanSuCore.themTruongPhong(tp1);
 		quanLyNhanSuCore.themTruongPhong(tp2);
 		quanLyNhanSuCore.themNhanVien(nv1);
@@ -139,6 +144,8 @@ public class QuanLyNhanSuConsole {
 		}
 		
 		foundNV.setTruongPhong(foundTP.getHoTen());
+		foundTP.setSoNhanVien(foundTP.getSoNhanVien()+1);
+		
 		System.out.println("Phân bổ trưởng phòng thành công");
 		
 	}
@@ -152,7 +159,38 @@ public class QuanLyNhanSuConsole {
 		System.out.println("3. Giám đốc");
 		System.out.print("Lựa chọn: ");
 		loaiNhanSu = Integer.parseInt(scanner.nextLine());
-		
+		switch (loaiNhanSu) {
+		case 1:
+			xoaNhanVien();
+			break;
+		case 2:
+			xoaTruongPhong();
+			break;
+		case 3:
+			xoaGiamDoc();
+			break;
+		default:
+			System.out.println("Lựa chọn không hợp lệ.");
+			break;
+		}
+	}
+
+	private static void xoaGiamDoc() {
+		System.out.println("Nhập mã giám đốc");
+		String maGD = scanner.nextLine();
+		quanLyNhanSuCore.xoaGiamDoc(maGD);
+	}
+
+	private static void xoaTruongPhong() {
+		System.out.println("Nhập mã trưởng phòng");
+		String maTP = scanner.nextLine();
+		quanLyNhanSuCore.xoaTruongPhong(maTP);
+	}
+
+	private static void xoaNhanVien() {
+		System.out.println("Nhập mã nhân viên");
+		String maNV = scanner.nextLine();
+		quanLyNhanSuCore.xoaNhanVien(maNV);		
 	}
 
 	private static void keepGoing() {

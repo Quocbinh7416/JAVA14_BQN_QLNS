@@ -10,10 +10,14 @@ public class NhanVien extends NhanSu {
 	/* constructors */
 	public NhanVien() {
 		maSo = "NV" + STT++;
-		truongPhong = "";
+		truongPhong = "-";
 		this.luongMotNgay=100f;
 	}
 	/* getters/setters */
+	public String getTruongPhong () {
+		return this.truongPhong;
+	}
+	
 	public void setTruongPhong(String _hoTen) {
 		this.truongPhong = _hoTen;
 	}
@@ -25,13 +29,7 @@ public class NhanVien extends NhanSu {
 	}
 	@Override
 	public void xuatThongTin(){
-		MyUtils.drawLine(10);
-		System.out.printf("%s %s:\n","Thông tin", getChucVu());
-		System.out.printf("%-16s: %s\n","Mã số", this.maSo);
-		System.out.printf("%-16s: %s\n", "Họ tên", this.hoTen);
-		System.out.printf("%-16s: %s\n", "Số điện thoại", this.soDienThoai);
-		System.out.printf("%-16s: %.2f\n", "Số ngày làm", this.soNgayLam);
-		System.out.printf("%-16s: %.2f\n", "Lương một ngày", this.luongMotNgay);
+		super.xuatThongTin();
 		System.out.printf("%-16s: %.2f\n", "Lương tháng", this.tinhLuong());
 		System.out.printf("%-16s: %s\n", "TP quản lý", this.truongPhong);
 	}

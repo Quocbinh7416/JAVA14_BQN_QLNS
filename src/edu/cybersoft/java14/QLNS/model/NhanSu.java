@@ -31,6 +31,7 @@ public abstract class NhanSu {
 		System.out.print("Số ngày làm: ");
 		this.soNgayLam = Float.parseFloat(scanner.nextLine());
 	}
+	
 	public void nhapThongTinTest(String _hoten, String _SDT, float _SNL) {
 		this.hoTen =_hoten;
 		this.soDienThoai = _SDT;
@@ -47,7 +48,6 @@ public abstract class NhanSu {
 		System.out.printf("%-16s: %s\n", "Số điện thoại", this.soDienThoai);
 		System.out.printf("%-16s: %.2f\n", "Số ngày làm", this.soNgayLam);
 		System.out.printf("%-16s: %.2f\n", "Lương một ngày", this.luongMotNgay);
-		System.out.printf("%-16s: %.2f\n", "Lương tháng", this.tinhLuong());
 	}
 	/**
 	 * Tính lương cơ bản của nhân sự.
