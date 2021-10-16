@@ -18,8 +18,28 @@ public class QuanLyNhanSuConsole {
 	
 	/* methods */
 	public static void test() {
-		themNhanSu();
-		quanLyNhanSuCore.inDanhSachNhanSu();
+		GiamDoc gd1 = new GiamDoc();
+		gd1.nhapThongTinTest("GiamDoc1", "1234", 23);
+		TruongPhong tp1 = new TruongPhong();
+		tp1.nhapThongTinTest("TruongPhong1", "4321", 25);
+		TruongPhong tp2 = new TruongPhong();
+		tp2.nhapThongTinTest("TruongPhong2", "1234", 24);
+		NhanVien nv1 = new NhanVien();
+		nv1.nhapThongTinTest("NhanVien1", "111", 27);
+		nv1.setTruongPhong(tp1.getHoTen());
+		NhanVien nv2 = new NhanVien();
+		nv2.nhapThongTinTest("NhanVien2", "222", 26);
+		NhanVien nv3 = new NhanVien();
+		nv3.nhapThongTinTest("NhanVien3", "333", 25);
+		quanLyNhanSuCore.themGiamDoc(gd1);
+		quanLyNhanSuCore.themTruongPhong(tp1);
+		quanLyNhanSuCore.themTruongPhong(tp2);
+		quanLyNhanSuCore.themNhanVien(nv1);
+		quanLyNhanSuCore.themNhanVien(nv2);
+		quanLyNhanSuCore.themNhanVien(nv3);
+		
+//		themNhanSu();
+//		quanLyNhanSuCore.inDanhSachNhanSu();
 		
 	}
 	
@@ -44,7 +64,7 @@ public class QuanLyNhanSuConsole {
 		System.out.println("3. Thêm nhân sự");
 		System.out.println("4. Xoá nhân sự");
 		System.out.println("5. In danh sách nhân sự");
-		System.out.println("6. ");
+		System.out.println("6. Phân bổ nhân viên vào trưởng phòng");
 		System.out.println("7. ");
 		System.out.println("8. ");
 		System.out.println("9. ");
@@ -78,8 +98,9 @@ public class QuanLyNhanSuConsole {
 			quanLyNhanSuCore.inDanhSachNhanSu();
 			keepGoing();
 			break;
-		case 6:
-			
+		case 6: // Phân bổ nhân viên vào trưởng phòng
+			phanBoNhanVien();
+			keepGoing();
 			break;
 		case 7:
 			
@@ -99,6 +120,29 @@ public class QuanLyNhanSuConsole {
 		}
 	}
 	
+	private static void phanBoNhanVien() {
+		// lua chon nhan vien
+		System.out.println("Nhập mã nhân viên cần phân bổ:");
+		String maNV = scanner.nextLine();
+		NhanVien foundNV = quanLyNhanSuCore.timNhanVien(maNV);
+		if (foundNV==null) {
+			System.out.println("Không tìm thấy nhân viên");
+			return;
+		}
+		// lua chon truong phong
+		System.out.println("Nhập mã trưởng phòng quản lý:");
+		String maTP = scanner.nextLine();
+		TruongPhong foundTP = quanLyNhanSuCore.timTruongPhong(maTP);
+		if (foundTP==null) {
+			System.out.println("Không tìm thấy trưởng phòng");
+			return;
+		}
+		
+		foundNV.setTruongPhong(foundTP.getHoTen());
+		System.out.println("Phân bổ trưởng phòng thành công");
+		
+	}
+
 	private static void xoaNhanSu() {
 		int loaiNhanSu = 0;
 		boolean isSuccess = false;

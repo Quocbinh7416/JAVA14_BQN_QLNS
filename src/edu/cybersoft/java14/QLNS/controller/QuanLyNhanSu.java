@@ -1,6 +1,7 @@
 package edu.cybersoft.java14.QLNS.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -110,5 +111,23 @@ public class QuanLyNhanSu {
 
 	public void xuatThongTinCongTy() {
 		this.congTy.xuatThongTin();
+	}
+
+	public NhanVien timNhanVien(String maNV) {
+		for (NhanVien nv : dsNhanVien) {
+			if(nv.getMaSo().equals(maNV)) {
+				return nv;
+			}
+		}
+		return null;
+	}
+
+	public TruongPhong timTruongPhong(String maTP) {
+		for (TruongPhong tp : dsTruongPhong) {
+			if(tp.getMaSo().equals(maTP)) {
+				return tp;
+			}
+		}
+		return null;
 	}
 }

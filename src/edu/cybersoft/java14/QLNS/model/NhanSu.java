@@ -11,12 +11,9 @@ public abstract class NhanSu {
 	protected String soDienThoai;
 	protected float soNgayLam;
 	protected float luongMotNgay;
-	private static int STT = 1;
 	
 	/* constructors */
-	public NhanSu() {
-		maSo = "NS" + STT++;
-	}
+
 	
 	/* getters/setters */
 	public String getMaSo() {
@@ -33,8 +30,11 @@ public abstract class NhanSu {
 		this.soDienThoai = scanner.nextLine();
 		System.out.print("Số ngày làm: ");
 		this.soNgayLam = Float.parseFloat(scanner.nextLine());
-		System.out.print("Lương một ngày: ");
-		this.luongMotNgay = Float.parseFloat(scanner.nextLine());
+	}
+	public void nhapThongTinTest(String _hoten, String _SDT, float _SNL) {
+		this.hoTen =_hoten;
+		this.soDienThoai = _SDT;
+		this.soNgayLam = _SNL;
 	}
 	
 	abstract protected String getChucVu();
